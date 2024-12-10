@@ -3,22 +3,22 @@ package com.deepanshu.Dto;
 public class LandingPageDto {
 
 	private Long id;
+	private String imageData;
+	private String brand;
 	private String title;
 	private int price;
 	private int sellingPrice;
-	private String brand;
-	private String imageData;
 	private String sku;
 
-	public LandingPageDto(Long id, String title, int price, int sellingPrice, String brand, String imageData,
+	public LandingPageDto(Long id, String imageData, String brand, String title, int price, int sellingPrice,
 			String sku) {
 		super();
 		this.id = id;
+		this.imageData = imageData;
+		this.brand = brand;
 		this.title = title;
 		this.price = price;
 		this.sellingPrice = sellingPrice;
-		this.brand = brand;
-		this.imageData = imageData;
 		this.sku = sku;
 	}
 
