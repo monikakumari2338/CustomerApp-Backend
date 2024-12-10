@@ -32,7 +32,7 @@ CREATE TABLE `searched_item` (
   KEY `FKex387ml08om5ylatt10s2h8q3` (`user_id`),
   CONSTRAINT `FKecm7i4mgyr4jxd47h9vjxk4ue` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`),
   CONSTRAINT `FKex387ml08om5ylatt10s2h8q3` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +41,6 @@ CREATE TABLE `searched_item` (
 
 LOCK TABLES `searched_item` WRITE;
 /*!40000 ALTER TABLE `searched_item` DISABLE KEYS */;
-INSERT INTO `searched_item` VALUES (1,'2024-12-04 11:24:57.959629',12,2),(2,'2024-12-04 11:24:57.959629',14,2),(3,'2024-12-04 11:24:57.959629',15,2),(4,'2024-12-04 11:24:57.959629',16,2),(5,'2024-12-04 11:24:57.959629',17,2),(6,'2024-12-04 11:24:57.959629',18,2),(7,'2024-12-04 11:24:57.959629',19,2),(8,'2024-12-04 11:24:57.959629',20,2);
 /*!40000 ALTER TABLE `searched_item` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-12-10  8:57:28
+-- Dump completed on 2024-12-10 18:07:47

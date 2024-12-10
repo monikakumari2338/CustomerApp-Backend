@@ -6,6 +6,7 @@ public class ProductDetails {
 	private int quantity;
 	private String sku;
 	private String Color;
+	private String size;
 	private String imageData;
 
 	public String getName() {
@@ -40,11 +41,34 @@ public class ProductDetails {
 		Color = color;
 	}
 
+	public String getSize() {
+		return size;
+	}
+
+	public void setSize(String size) {
+		this.size = size;
+	}
+
 	public String getImageData() {
 		return imageData;
 	}
 
 	public void setImageData(String imageData) {
+		this.imageData = imageData;
+	}
+
+	public ProductDetails() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public ProductDetails(String name, int quantity, String sku, String color, String size, String imageData) {
+		super();
+		this.name = name;
+		this.quantity = quantity;
+		this.sku = sku;
+		Color = color;
+		this.size = size;
 		this.imageData = imageData;
 	}
 

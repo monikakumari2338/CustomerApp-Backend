@@ -156,10 +156,17 @@ public class AdminProductController {
 	}
 
 	// search product availability by pincode
-	@GetMapping("/searchProductAvailable/productId={productId}/pincode={pincode}")
-	public Boolean searchProductAvailabiltyByPincode(@PathVariable Long productId, @PathVariable String pincode)
-			throws Exception {
-		return productService.searchProductAvailabiltyByPincode(productId, pincode);
+	@GetMapping("/searchByInput/{param}")
+	public ResponseEntity<List<Product>> searchByDescription(@PathVariable String param){
+		List<Product> products= productService.searchProduct(param);
+		return new ResponseEntity<List<Product>>(products, HttpStatus.OK);
 	}
+	
+	// search product availability by pincode
+		@GetMapping("/searchProductAvailable/productId={productId}/pincode={pincode}")
+		public Boolean searchProductAvailabiltyByPincode(@PathVariable Long productId, @PathVariable String pincode)
+				throws Exception {
+			return productService.searchProductAvailabiltyByPincode(productId, pincode);
+		}
 
 }

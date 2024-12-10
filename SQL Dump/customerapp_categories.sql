@@ -39,7 +39,7 @@ CREATE TABLE `categories` (
 
 LOCK TABLES `categories` WRITE;
 /*!40000 ALTER TABLE `categories` DISABLE KEYS */;
-INSERT INTO `categories` VALUES (1,1,'Women',NULL),(2,2,'Clothes',1),(3,3,'Women Kurta',2),(4,3,'Ethnic Dresses',2),(52,1,'grocery',NULL),(53,2,'Dairy',52),(54,3,'dairyProducts',53),(102,1,'string',NULL),(103,2,'string',102),(104,3,'Dress',2);
+INSERT INTO `categories` VALUES (1,1,'Women',NULL),(2,2,'Clothes',1),(3,3,'Women Kurta',2),(4,3,'Ethnic Dresses',2),(52,1,'grocery',NULL),(53,2,'Dairy',52),(54,3,'dairyProducts',53),(102,1,'string',NULL),(103,2,'string',1),(104,3,'Dress',2);
 /*!40000 ALTER TABLE `categories` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-12-10  8:57:18
+-- Dump completed on 2024-12-10 18:07:38

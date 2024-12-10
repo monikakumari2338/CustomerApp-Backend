@@ -34,6 +34,7 @@ CREATE TABLE `store_pickup` (
   `color` varchar(255) DEFAULT NULL,
   `image_data` varchar(255) DEFAULT NULL,
   `sku` varchar(255) DEFAULT NULL,
+  `size` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FKrxhoofmmi6003cutpcv0qt887` (`product_id`),
   KEY `FKecj4jvo5nmkkbe6a5j922by03` (`store_id`),
@@ -62,4 +63,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-12-10  8:57:31
+-- Dump completed on 2024-12-10 18:07:49

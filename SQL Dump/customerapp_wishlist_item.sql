@@ -45,7 +45,6 @@ CREATE TABLE `wishlist_item` (
 
 LOCK TABLES `wishlist_item` WRITE;
 /*!40000 ALTER TABLE `wishlist_item` DISABLE KEYS */;
-INSERT INTO `wishlist_item` VALUES (21,899,2499,1,'string',2,12,1),(23,699,1999,1,'string',2,14,1),(24,899,2999,1,'string',2,16,1);
 /*!40000 ALTER TABLE `wishlist_item` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -58,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-12-10  8:57:33
+-- Dump completed on 2024-12-10 18:07:52

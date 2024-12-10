@@ -33,7 +33,7 @@ CREATE TABLE `continue_shopping_items` (
   KEY `FKax472rpugdpt47uqp8tnu0wyg` (`user_id`),
   CONSTRAINT `FKax472rpugdpt47uqp8tnu0wyg` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
   CONSTRAINT `FKm6ww6hdpkdd47te6xq8nkg8j6` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,7 +42,6 @@ CREATE TABLE `continue_shopping_items` (
 
 LOCK TABLES `continue_shopping_items` WRITE;
 /*!40000 ALTER TABLE `continue_shopping_items` DISABLE KEYS */;
-INSERT INTO `continue_shopping_items` VALUES (3,'2024-12-06 22:59:51.743417','sku001',152,1);
 /*!40000 ALTER TABLE `continue_shopping_items` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -55,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-12-10  8:57:25
+-- Dump completed on 2024-12-10 18:07:44

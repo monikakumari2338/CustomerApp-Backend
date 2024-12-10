@@ -28,6 +28,7 @@ CREATE TABLE `product_details` (
   `image_data` varchar(255) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
   `quantity` int NOT NULL,
+  `size` varchar(255) DEFAULT NULL,
   `sku` varchar(255) DEFAULT NULL,
   KEY `FKrhahp4f26x99lqf0kybcs79rb` (`product_id`),
   CONSTRAINT `FKrhahp4f26x99lqf0kybcs79rb` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`)
@@ -40,7 +41,7 @@ CREATE TABLE `product_details` (
 
 LOCK TABLES `product_details` WRITE;
 /*!40000 ALTER TABLE `product_details` DISABLE KEYS */;
-INSERT INTO `product_details` VALUES (152,'Mauve','https://www.myntra.com/blazers/all+about+you/all-about-you-women-mauve-solid-single-breasted-casual-blazer/14230964/buy','Single-Breasted Casual Blazer',20,'sku001'),(202,'Peach','https://www.myntra.com/dresses/salt+attire/salt-attire-floral-printed-v-neck-puff-sleeve-crepe-a-line-midi-dress/26074800/buy','Floral Printed A-Line Midi',20,'sku002'),(203,'Black','https://www.myntra.com/dresses/mast+%26+harbour/mast--harbour-women-solid-black-midi-jumper-dress/10322871/buy','Women Jumper Dress',20,'sku003'),(204,'White','https://www.myntra.com/dresses/stylecast/stylecast-women-round-neck-bodycon-maxi-dress/31386516/buy','Bodycon Maxi Dress',20,'sku004'),(205,'Black','https://www.myntra.com/dresses/dodo+%26+moa/dodo--moa-sheath-midi-dress/29436404/buy','Sheath Midi Dress',20,'sku005'),(206,'Pink','https://www.myntra.com/dresses/aayu/aayu-women-puff-sleeve-sheath-mini-dress/28906992/buy','Sheath Midi Dress',20,'sku006'),(207,'Black','https://www.myntra.com/dresses/tandul/tandul-print-maxi-dress/30235470/buy','Print Maxi Dress',20,'sku007'),(208,'Black','https://www.myntra.com/dresses/quiero/quiero-women-stylish-black-floral-sweetheart-neck-dress/16542888/buy','Sweetheart Neck Dress',20,'sku008'),(252,'Black','https://www.myntra.com/dresses/quiero/quiero-women-stylish-black-floral-sweetheart-neck-dress/16542888/buy','Sweetheart Neck Dress',20,'sku008');
+INSERT INTO `product_details` VALUES (452,'Beige','https://m.media-amazon.com/images/I/71+PUBieL2L._SY879_.jpg','Women’s Bodycon Knee Length Dress',20,'L','sku001'),(452,'Black','https://m.media-amazon.com/images/I/71RwL+ZVG7L._SY879_.jpg','Women’s Bodycon Knee Length Dress',20,'L','sku003'),(452,'Beige','https://m.media-amazon.com/images/I/71+PUBieL2L._SY879_.jpg','Women’s Bodycon Knee Length Dress',20,'M','sku002'),(453,'Maroon','https://m.media-amazon.com/images/I/61475jtEDkL._SY879_.jpg','Puff Sleeve Crepe Fit & Flare Midi Dress',0,'S','sku004'),(453,'Teal','https://m.media-amazon.com/images/I/71IqP5HVahL._SY879_.jpg','Puff Sleeve Crepe Fit & Flare Midi Dress',20,'S','sku005'),(454,'Lavender','https://m.media-amazon.com/images/I/61373gCmJxL._SY879_.jpg','Globus Women Strappy Shoulder Fit & Flare Sequinned Mini',30,'S','sku006'),(455,'Rust','https://m.media-amazon.com/images/I/71C3noU5GkL._SX679_.jpg','Slit Knitted A-Line Midi',30,'S','sku007'),(456,'Pink','https://m.media-amazon.com/images/I/61pP+trqOpL._SY879_.jpg','Women\'s Cotton Printed Anarkali Kurta with Palazzo',30,'M','sku008'),(457,'Pink','https://m.media-amazon.com/images/I/71BJk6KzQfL._SX679_.jpg','Printed Straight Cotton Kurta Set',30,'M','sku009'),(457,'Dark Sea Green','https://m.media-amazon.com/images/I/71i5Hv0RYPL._SX679_.jpg','Printed Straight Cotton Kurta Set',30,'M','sku010'),(457,'Dark Sea Green','https://m.media-amazon.com/images/I/71i5Hv0RYPL._SX679_.jpg','Printed Straight Cotton Kurta Set',30,'L','sku011'),(458,'Yellow','https://m.media-amazon.com/images/I/61K31ClSnDL._SY879_.jpg','Naixa Women Women\'s Kurtas',30,'L','sku012'),(458,'Yellow','https://m.media-amazon.com/images/I/61K31ClSnDL._SY879_.jpg','Naixa Women Women\'s Kurtas',30,'M','sku013');
 /*!40000 ALTER TABLE `product_details` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-12-10  8:57:34
+-- Dump completed on 2024-12-10 18:07:53
