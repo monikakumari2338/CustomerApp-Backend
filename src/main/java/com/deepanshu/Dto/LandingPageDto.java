@@ -3,23 +3,21 @@ package com.deepanshu.Dto;
 public class LandingPageDto {
 
 	private Long id;
-	private String imageData;
+	private String image;
 	private String brand;
-	private String title;
+	private String product;
 	private int price;
 	private int sellingPrice;
-	private String sku;
 
-	public LandingPageDto(Long id, String imageData, String brand, String title, int price, int sellingPrice,
-			String sku) {
+	public LandingPageDto(Long id, String image, String brand, String product, int price, int sellingPrice) {
 		super();
 		this.id = id;
-		this.imageData = imageData;
+		this.image = image;
 		this.brand = brand;
-		this.title = title;
+		this.product = product;
 		this.price = price;
 		this.sellingPrice = sellingPrice;
-		this.sku = sku;
+
 	}
 
 	public Long getId() {
@@ -30,12 +28,12 @@ public class LandingPageDto {
 		this.id = id;
 	}
 
-	public String getTitle() {
-		return title;
+	public String getProduct() {
+		return product;
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
+	public void setProduct(String product) {
+		this.product = product;
 	}
 
 	public int getPrice() {
@@ -62,20 +60,12 @@ public class LandingPageDto {
 		this.brand = brand;
 	}
 
-	public String getImageData() {
-		return imageData;
+	public String getImage() {
+		return image;
 	}
 
-	public void setImageData(String imageData) {
-		this.imageData = imageData;
-	}
-
-	public String getSku() {
-		return sku;
-	}
-
-	public void setSku(String sku) {
-		this.sku = sku;
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 }

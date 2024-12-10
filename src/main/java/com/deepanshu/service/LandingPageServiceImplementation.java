@@ -53,8 +53,7 @@ public class LandingPageServiceImplementation implements LandingPageService {
 			List<ProductDetails> details = new ArrayList<>(item.get(i).getProduct().getDetails());
 			products.add(new LandingPageDto(item.get(i).getProduct().getId(), details.get(0).getImageData(),
 					item.get(i).getProduct().getBrand(), item.get(i).getProduct().getTitle(),
-					item.get(i).getProduct().getPrice(), item.get(i).getProduct().getDiscountedPrice(),
-					details.get(0).getSku()));
+					item.get(i).getProduct().getPrice(), item.get(i).getProduct().getDiscountedPrice()));
 		}
 		return products;
 	}
@@ -71,16 +70,14 @@ public class LandingPageServiceImplementation implements LandingPageService {
 			List<ProductDetails> details = new ArrayList<>(FiveStarRatedItems.get(i).getDetails());
 			products.add(new LandingPageDto(FiveStarRatedItems.get(i).getId(), details.get(0).getImageData(),
 					FiveStarRatedItems.get(i).getBrand(), FiveStarRatedItems.get(i).getTitle(),
-					FiveStarRatedItems.get(i).getPrice(), FiveStarRatedItems.get(i).getDiscountedPrice(),
-					details.get(0).getSku()));
+					FiveStarRatedItems.get(i).getPrice(), FiveStarRatedItems.get(i).getDiscountedPrice()));
 		}
 
 		for (int i = 0; i < FourStarRatedItems.size(); i++) {
 			List<ProductDetails> details = new ArrayList<>(FourStarRatedItems.get(i).getDetails());
 			products.add(new LandingPageDto(FourStarRatedItems.get(i).getId(), details.get(0).getImageData(),
 					FourStarRatedItems.get(i).getBrand(), FourStarRatedItems.get(i).getTitle(),
-					FourStarRatedItems.get(i).getPrice(), FourStarRatedItems.get(i).getDiscountedPrice(),
-					details.get(0).getSku()));
+					FourStarRatedItems.get(i).getPrice(), FourStarRatedItems.get(i).getDiscountedPrice()));
 		}
 
 		return products;
@@ -100,7 +97,7 @@ public class LandingPageServiceImplementation implements LandingPageService {
 
 				featuredProducts.add(new LandingPageDto(products.get(i).getId(), details.get(0).getImageData(),
 						products.get(i).getBrand(), products.get(i).getTitle(), products.get(i).getPrice(),
-						products.get(i).getDiscountedPrice(), details.get(0).getSku()));
+						products.get(i).getDiscountedPrice()));
 			}
 
 		}
