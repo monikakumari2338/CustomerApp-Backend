@@ -193,8 +193,25 @@ public class ProductServiceImplementation implements ProductService {
 			List<ProductDetails> details = new ArrayList<>(item.getDetails());
 			Set<String> colors = details.stream().map(ProductDetails::getColor).collect(Collectors.toSet());
 			Set<String> sizes = details.stream().map(ProductDetails::getSize).collect(Collectors.toSet());
-			plpCardDto.add(new PlpCardDto(item.getId(), details.get(0).getImageData(), item.getBrand(), item.getTitle(),
-					item.getPrice(), item.getDiscountedPrice(), colors, sizes));
+			// List<String> images =
+			// details.stream().map(ProductDetails::getImageData).collect(Collectors.toList());
+
+			System.out.println("details :" + details);
+			List<String> images = new ArrayList<>();
+			images.add(details.get(0).getImageData());
+			images.add(details.get(0).getImageData());
+			images.add(details.get(0).getImageData());
+
+			double totalRatings = item.getCountUsersRatedProductFiveStars() + item.getCountUsersRatedProductFourStars()
+					+ item.getAverageRatingForThreeStars() + item.getAverageRatingForTwoStars()
+					+ item.getCountUsersRatedProductOneStar();
+			double totalscore = 5 * item.getCountUsersRatedProductFiveStars()
+					+ 4 * item.getCountUsersRatedProductFourStars() + 3 * item.getAverageRatingForThreeStars()
+					+ 2 * item.getAverageRatingForTwoStars() + 1 * item.getCountUsersRatedProductOneStar();
+			double avgRating = totalscore / totalRatings;
+
+			plpCardDto.add(new PlpCardDto(item.getId(), images, item.getBrand(), item.getTitle(), item.getPrice(),
+					item.getDiscountedPrice(), avgRating, colors, sizes));
 		});
 
 		return plpCardDto;
@@ -297,8 +314,24 @@ public class ProductServiceImplementation implements ProductService {
 			List<ProductDetails> details = new ArrayList<>(item.getDetails());
 			Set<String> colors = details.stream().map(ProductDetails::getColor).collect(Collectors.toSet());
 			Set<String> sizes = details.stream().map(ProductDetails::getSize).collect(Collectors.toSet());
-			plpCardDto.add(new PlpCardDto(item.getId(), details.get(0).getImageData(), item.getBrand(), item.getTitle(),
-					item.getPrice(), item.getDiscountedPrice(), colors, sizes));
+			// List<String> images =
+			// details.stream().map(ProductDetails::getImageData).collect(Collectors.toList());
+			System.out.println("details :" + details);
+			List<String> images = new ArrayList<>();
+			images.add(details.get(0).getImageData());
+			images.add(details.get(0).getImageData());
+			images.add(details.get(0).getImageData());
+
+			double totalRatings = item.getCountUsersRatedProductFiveStars() + item.getCountUsersRatedProductFourStars()
+					+ item.getAverageRatingForThreeStars() + item.getAverageRatingForTwoStars()
+					+ item.getCountUsersRatedProductOneStar();
+			double totalscore = 5 * item.getCountUsersRatedProductFiveStars()
+					+ 4 * item.getCountUsersRatedProductFourStars() + 3 * item.getAverageRatingForThreeStars()
+					+ 2 * item.getAverageRatingForTwoStars() + 1 * item.getCountUsersRatedProductOneStar();
+			double avgRating = totalscore / totalRatings;
+
+			plpCardDto.add(new PlpCardDto(item.getId(), images, item.getBrand(), item.getTitle(), item.getPrice(),
+					item.getDiscountedPrice(), avgRating, colors, sizes));
 		});
 		return plpCardDto;
 	}

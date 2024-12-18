@@ -1,15 +1,17 @@
 package com.deepanshu.Dto;
 
+import java.util.List;
 import java.util.Set;
 
 public class PlpCardDto {
 
 	private Long id;
-	private String image;
+	private List<String> image;
 	private String brandName;
 	private String itemName;
 	private int price;
 	private int sellingPrice;
+	private double rating;
 	private Set<String> colors;
 	private Set<String> sizes;
 
@@ -21,11 +23,11 @@ public class PlpCardDto {
 		this.id = id;
 	}
 
-	public String getImage() {
+	public List<String> getImage() {
 		return image;
 	}
 
-	public void setImage(String image) {
+	public void setImage(List<String> image) {
 		this.image = image;
 	}
 
@@ -77,8 +79,16 @@ public class PlpCardDto {
 		this.sizes = sizes;
 	}
 
-	public PlpCardDto(Long id, String image, String brandName, String itemName, int price, int sellingPrice,
-			Set<String> colors, Set<String> sizes) {
+	public double getRating() {
+		return rating;
+	}
+
+	public void setRating(double rating) {
+		this.rating = rating;
+	}
+
+	public PlpCardDto(Long id, List<String> image, String brandName, String itemName, int price, int sellingPrice,
+			double rating, Set<String> colors, Set<String> sizes) {
 		super();
 		this.id = id;
 		this.image = image;
@@ -86,6 +96,7 @@ public class PlpCardDto {
 		this.itemName = itemName;
 		this.price = price;
 		this.sellingPrice = sellingPrice;
+		this.rating = rating;
 		this.colors = colors;
 		this.sizes = sizes;
 	}
