@@ -1,13 +1,23 @@
 package com.deepanshu.service;
 
 import java.io.IOException;
+
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import com.deepanshu.Dto.LandingPageDto;
+import com.deepanshu.Dto.PdpDto;
+import com.deepanshu.Dto.PdpDto.RatingDto;
+import com.deepanshu.Dto.PdpDto.ReviewsDto;
+import com.deepanshu.Dto.PdpDto.DetailDto;
+import com.deepanshu.Dto.PdpDto.VariantInfoDto;
+import com.deepanshu.Dto.PlpCardDto;
 import com.deepanshu.config.ElasticSearchQuery;
 import com.deepanshu.modal.*;
 import com.deepanshu.repository.PromotionRepository;
+import com.deepanshu.repository.RatingRepository;
+import com.deepanshu.repository.ReviewRepository;
 import com.deepanshu.request.PromotionRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -33,6 +43,10 @@ public class ProductServiceImplementation implements ProductService {
 	private ElasticSearchQuery elasticSearchQuery;
 	@Autowired
 	private PromotionRepository promotionRepository;
+	@Autowired
+	private ReviewRepository reviewRepository;
+	@Autowired
+	private RatingRepository ratingRepository;
 
 	public ProductServiceImplementation(ProductRepository productRepository, UserService userService,
 			CategoryRepository categoryRepository, ElasticSearchQuery elasticSearchQuery) {
@@ -171,6 +185,22 @@ public class ProductServiceImplementation implements ProductService {
 	}
 
 	@Override
+	public List<PlpCardDto> searchProductBySearchBar(String query) {
+		List<Product> products = productRepository.searchProduct(query);
+		List<PlpCardDto> plpCardDto = new ArrayList<>();
+
+		products.forEach(item -> {
+			List<ProductDetails> details = new ArrayList<>(item.getDetails());
+			Set<String> colors = details.stream().map(ProductDetails::getColor).collect(Collectors.toSet());
+			Set<String> sizes = details.stream().map(ProductDetails::getSize).collect(Collectors.toSet());
+			plpCardDto.add(new PlpCardDto(item.getId(), details.get(0).getImageData(), item.getBrand(), item.getTitle(),
+					item.getPrice(), item.getDiscountedPrice(), colors, sizes));
+		});
+
+		return plpCardDto;
+	}
+
+	@Override
 	public Page<Product> getAllProduct(String category, List<String> colors, List<String> sizes, Integer minPrice,
 			Integer maxPrice, Integer minDiscount, String sort, String stock, Integer pageNumber, Integer pageSize,
 			String country, String wearType, String fabric, String sleeves, String fit, String materialCare,
@@ -198,8 +228,51 @@ public class ProductServiceImplementation implements ProductService {
 	}
 
 	@Override
-	public Product getProductById(Long newProductId) {
-		return productRepository.findById(newProductId).orElse(null);
+	public PdpDto getPdpProductById(Long newProductId) {
+
+		Product product = productRepository.findById(newProductId).orElse(null);
+		List<ProductDetails> details = new ArrayList<>(product.getDetails());
+
+		List<String> displayimages = new ArrayList<>();
+		displayimages.add(details.get(0).getImageData());
+
+		Set<String> colors = details.stream().map(ProductDetails::getColor).collect(Collectors.toSet());
+		Set<String> sizes = details.stream().map(ProductDetails::getSize).collect(Collectors.toSet());
+		VariantInfoDto VariantInfoDto = new VariantInfoDto(details.get(0).getSku(), colors, sizes);
+
+		double totalRatings = product.getCountUsersRatedProductFiveStars()
+				+ product.getCountUsersRatedProductFourStars() + product.getAverageRatingForThreeStars()
+				+ product.getAverageRatingForTwoStars() + product.getCountUsersRatedProductOneStar();
+		double totalscore = 5 * product.getCountUsersRatedProductFiveStars()
+				+ 4 * product.getCountUsersRatedProductFourStars() + 3 * product.getAverageRatingForThreeStars()
+				+ 2 * product.getAverageRatingForTwoStars() + 1 * product.getCountUsersRatedProductOneStar();
+		double avgRating = totalscore / totalRatings;
+		RatingDto ratingDto = new RatingDto(avgRating, totalRatings);
+
+		List<Review> reviews = reviewRepository.getAllProductsReview(newProductId);
+		System.out.println("reviews :" + reviews);
+
+		List<ReviewsDto> reviewsDto = new ArrayList<>();
+		reviews.stream().forEach(review -> {
+			List<Rating> ratedUser = ratingRepository.findByUserIdAndProductId(review.getUser().getId(), newProductId);
+			reviewsDto.add(new ReviewsDto(review.getUser().getFirstName(), ratedUser.get(0).getGivenRating(),
+					review.getReview()));
+		});
+
+		DetailDto detailDto = new DetailDto(product.getDescription(), product.getFabric(), product.getFit(),
+				product.getMaterialCare(), product.getSeller());
+
+		List<LandingPageDto> similarItemDto = new ArrayList<>();
+		Category productCategory = product.getCategory();
+		List<Product> products = productRepository.findByCategory(productCategory.getName());
+		products.stream()
+				.forEach(item -> similarItemDto.add(new LandingPageDto(item.getId(), details.get(0).getImageData(),
+						item.getBrand(), item.getTitle(), item.getPrice(), item.getDiscountedPrice())));
+
+		PdpDto PdpDto = new PdpDto(displayimages, product.getBrand(), product.getTitle(), VariantInfoDto,
+				product.getPrice(), product.getDiscountedPrice(), ratingDto, detailDto, reviewsDto, similarItemDto);
+
+		return PdpDto;
 	}
 
 	@Override
@@ -209,11 +282,25 @@ public class ProductServiceImplementation implements ProductService {
 
 	// filter the data based on the topLevelCategory selected
 	@Override
-	public List<Product> getTopCategoryWise(String category) {
+	public List<PlpCardDto> getTopCategoryWise(String category) {
 		List<Product> allProducts = getAllProducts();
-		return allProducts.stream()
-				.filter(product -> product.getCategory().getParentCategory().getName().equalsIgnoreCase(category))
+
+		List<Product> topCategoryProducts = allProducts.stream()
+				.filter(product -> product.getCategory() != null && product.getCategory().getParentCategory() != null
+						&& product.getCategory().getParentCategory().getName() != null && product.getCategory()
+								.getParentCategory().getParentCategory().getName().equalsIgnoreCase(category))
 				.collect(Collectors.toList());
+
+		List<PlpCardDto> plpCardDto = new ArrayList<>();
+
+		topCategoryProducts.forEach(item -> {
+			List<ProductDetails> details = new ArrayList<>(item.getDetails());
+			Set<String> colors = details.stream().map(ProductDetails::getColor).collect(Collectors.toSet());
+			Set<String> sizes = details.stream().map(ProductDetails::getSize).collect(Collectors.toSet());
+			plpCardDto.add(new PlpCardDto(item.getId(), details.get(0).getImageData(), item.getBrand(), item.getTitle(),
+					item.getPrice(), item.getDiscountedPrice(), colors, sizes));
+		});
+		return plpCardDto;
 	}
 
 	// filter the data based on the secondLevelCategory selected
@@ -221,9 +308,7 @@ public class ProductServiceImplementation implements ProductService {
 	public List<Product> getSecondCategoryWise(String category) {
 		List<Product> allProducts = getAllProducts();
 		return allProducts.stream()
-				.filter(product -> product.getCategory() != null && product.getCategory().getParentCategory() != null
-						&& product.getCategory().getParentCategory().getName() != null && product.getCategory()
-								.getParentCategory().getParentCategory().getName().equalsIgnoreCase(category))
+				.filter(product -> product.getCategory().getParentCategory().getName().equalsIgnoreCase(category))
 				.collect(Collectors.toList());
 	}
 
@@ -430,6 +515,12 @@ public class ProductServiceImplementation implements ProductService {
 
 		productRepository.saveAll(productsToUpdate);
 		return "Promotion applied to " + productsToUpdate.size() + " products!";
+	}
+
+	@Override
+	public Product getProductById(Long newProductId) {
+
+		return productRepository.findById(newProductId).get();
 	}
 
 }

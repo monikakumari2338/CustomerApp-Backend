@@ -14,32 +14,36 @@ import com.deepanshu.request.ReviewRequest;
 import com.deepanshu.service.ReviewService;
 import com.deepanshu.service.UserService;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+
 @RestController
 @RequestMapping("/api/reviews")
 @CrossOrigin(origins = "https://localhost:8081")
+@SecurityRequirement(name = "bearerAuth")
 public class ReviewController {
 
-    private ReviewService reviewService;
-    private UserService userService;
+	private ReviewService reviewService;
+	private UserService userService;
 
-    public ReviewController(ReviewService reviewService, UserService userService) {
-        this.reviewService = reviewService;
-        this.userService = userService;
-    }
+	public ReviewController(ReviewService reviewService, UserService userService) {
+		this.reviewService = reviewService;
+		this.userService = userService;
+	}
 
-    @PostMapping("/create")
-    public ResponseEntity<Review> createReviewHandler(@RequestBody ReviewRequest req, @RequestHeader("Authorization") String jwt) throws UserException, ProductException {
-        User user = userService.findUserProfileByJwt(jwt);
-        System.out.println("product id " + req.getProductId() + " - " + req.getReview());
-        Review review = reviewService.createReview(req, user);
-        System.out.println("product review " + req.getReview());
-        return new ResponseEntity<Review>(review, HttpStatus.ACCEPTED);
-    }
+	@PostMapping("/create")
+	public ResponseEntity<Review> createReviewHandler(@RequestBody ReviewRequest req,
+			@RequestHeader("Authorization") String jwt) throws UserException, ProductException {
+		User user = userService.findUserProfileByJwt(jwt);
+		System.out.println("product id " + req.getProductId() + " - " + req.getReview());
+		Review review = reviewService.createReview(req, user);
+		System.out.println("product review " + req.getReview());
+		return new ResponseEntity<Review>(review, HttpStatus.ACCEPTED);
+	}
 
-    @GetMapping("/products/{productId}")
-    public ResponseEntity<List<Review>> getProductsReviewHandler(@PathVariable Long productId) {
-        List<Review> reviews = reviewService.getAllReview(productId);
-        return new ResponseEntity<List<Review>>(reviews, HttpStatus.OK);
-    }
+	@GetMapping("/products/{productId}")
+	public ResponseEntity<List<Review>> getProductsReviewHandler(@PathVariable Long productId) {
+		List<Review> reviews = reviewService.getAllReview(productId);
+		return new ResponseEntity<List<Review>>(reviews, HttpStatus.OK);
+	}
 
 }

@@ -11,7 +11,9 @@ import org.springframework.data.repository.query.Param;
 import com.deepanshu.modal.Rating;
 
 public interface RatingRepository extends JpaRepository<Rating, Long> {
-    List<Rating> findByProductId(Long productId);
-    //check the user who already rated for a product
-    List<Rating>findByUserIdAndProductId(Long userId,Long productId);
+	List<Rating> findByProductId(Long productId);
+
+	// check the user who already rated for a product
+	List<Rating> findByUserIdAndProductId(Long userId, Long productId);
+
 }

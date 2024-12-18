@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import com.deepanshu.Dto.PdpDto;
+import com.deepanshu.Dto.PlpCardDto;
 import com.deepanshu.exception.ProductException;
 import com.deepanshu.modal.Product;
 import com.deepanshu.request.CreateProductRequest;
@@ -69,9 +71,15 @@ public class AdminProductController {
 		return new ResponseEntity<ApiResponse>(res, HttpStatus.ACCEPTED);
 	}
 
+	@GetMapping("/getProductById/{productId}")
+	public ResponseEntity<PdpDto> getProductById(@PathVariable Long productId) {
+		PdpDto product = productService.getPdpProductById(productId);
+		return new ResponseEntity<PdpDto>(product, HttpStatus.OK);
+	}
+
 	// filter the data based on the topLevelCategory selected
 	@GetMapping("/getProductByTopCategory")
-	public List<Product> getTopProductByCategory(@RequestParam String category) {
+	public List<PlpCardDto> getTopProductByCategory(@RequestParam String category) {
 		try {
 			return productService.getTopCategoryWise(category);
 		} catch (Exception e) {
@@ -156,17 +164,17 @@ public class AdminProductController {
 	}
 
 	// search product availability by pincode
-	@GetMapping("/searchByInput/{param}")
-	public ResponseEntity<List<Product>> searchByDescription(@PathVariable String param){
-		List<Product> products= productService.searchProduct(param);
-		return new ResponseEntity<List<Product>>(products, HttpStatus.OK);
+	@GetMapping("/searchProductBySearchBar/{param}")
+	public ResponseEntity<List<PlpCardDto>> searchByDescription(@PathVariable String param) {
+		List<PlpCardDto> products = productService.searchProductBySearchBar(param);
+		return new ResponseEntity<List<PlpCardDto>>(products, HttpStatus.OK);
 	}
-	
+
 	// search product availability by pincode
-		@GetMapping("/searchProductAvailable/productId={productId}/pincode={pincode}")
-		public Boolean searchProductAvailabiltyByPincode(@PathVariable Long productId, @PathVariable String pincode)
-				throws Exception {
-			return productService.searchProductAvailabiltyByPincode(productId, pincode);
-		}
+	@GetMapping("/searchProductAvailable/productId={productId}/pincode={pincode}")
+	public Boolean searchProductAvailabiltyByPincode(@PathVariable Long productId, @PathVariable String pincode)
+			throws Exception {
+		return productService.searchProductAvailabiltyByPincode(productId, pincode);
+	}
 
 }

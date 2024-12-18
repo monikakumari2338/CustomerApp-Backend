@@ -1,6 +1,6 @@
 package com.deepanshu.Dto;
 
-import java.util.List;
+import java.util.Set;
 
 public class PlpCardDto {
 
@@ -10,9 +10,8 @@ public class PlpCardDto {
 	private String itemName;
 	private int price;
 	private int sellingPrice;
-	private String sku;
-	private List<String> colors;
-	private List<String> sizes;
+	private Set<String> colors;
+	private Set<String> sizes;
 
 	public Long getId() {
 		return id;
@@ -62,32 +61,24 @@ public class PlpCardDto {
 		this.sellingPrice = sellingPrice;
 	}
 
-	public String getSku() {
-		return sku;
-	}
-
-	public void setSku(String sku) {
-		this.sku = sku;
-	}
-
-	public List<String> getColors() {
+	public Set<String> getColors() {
 		return colors;
 	}
 
-	public void setColors(List<String> colors) {
+	public void setColors(Set<String> colors) {
 		this.colors = colors;
 	}
 
-	public List<String> getSizes() {
+	public Set<String> getSizes() {
 		return sizes;
 	}
 
-	public void setSizes(List<String> sizes) {
+	public void setSizes(Set<String> sizes) {
 		this.sizes = sizes;
 	}
 
-	public PlpCardDto(Long id, String image, String brandName, String itemName, int price, int sellingPrice, String sku,
-			List<String> colors, List<String> sizes) {
+	public PlpCardDto(Long id, String image, String brandName, String itemName, int price, int sellingPrice,
+			Set<String> colors, Set<String> sizes) {
 		super();
 		this.id = id;
 		this.image = image;
@@ -95,7 +86,6 @@ public class PlpCardDto {
 		this.itemName = itemName;
 		this.price = price;
 		this.sellingPrice = sellingPrice;
-		this.sku = sku;
 		this.colors = colors;
 		this.sizes = sizes;
 	}

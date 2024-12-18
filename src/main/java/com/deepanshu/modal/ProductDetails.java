@@ -67,7 +67,7 @@ public class ProductDetails {
 		this.name = name;
 		this.quantity = quantity;
 		this.sku = sku;
-		Color = color;
+		this.Color = color;
 		this.size = size;
 		this.imageData = imageData;
 	}
