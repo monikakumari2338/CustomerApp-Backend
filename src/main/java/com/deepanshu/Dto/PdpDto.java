@@ -121,6 +121,8 @@ public class PdpDto {
 	// Nested DTO for variantInfo
 	public static class VariantInfoDto {
 		private String sku;
+		private String currentColor;
+		private String currentSize;
 		private Set<String> color;
 		private Set<String> size;
 
@@ -148,11 +150,30 @@ public class PdpDto {
 			this.size = size;
 		}
 
-		public VariantInfoDto(String sku, Set<String> colors, Set<String> sizes) {
+		public String getCurrentColor() {
+			return currentColor;
+		}
+
+		public void setCurrentColor(String currentColor) {
+			this.currentColor = currentColor;
+		}
+
+		public String getCurrentSize() {
+			return currentSize;
+		}
+
+		public void setCurrentSize(String currentSize) {
+			this.currentSize = currentSize;
+		}
+
+		public VariantInfoDto(String sku, String currentColor, String currentSize, Set<String> color,
+				Set<String> size) {
 			super();
 			this.sku = sku;
-			this.color = colors;
-			this.size = sizes;
+			this.currentColor = currentColor;
+			this.currentSize = currentSize;
+			this.color = color;
+			this.size = size;
 		}
 
 	}

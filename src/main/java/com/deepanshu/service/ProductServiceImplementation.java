@@ -255,7 +255,8 @@ public class ProductServiceImplementation implements ProductService {
 
 		Set<String> colors = details.stream().map(ProductDetails::getColor).collect(Collectors.toSet());
 		Set<String> sizes = details.stream().map(ProductDetails::getSize).collect(Collectors.toSet());
-		VariantInfoDto VariantInfoDto = new VariantInfoDto(details.get(0).getSku(), colors, sizes);
+		VariantInfoDto VariantInfoDto = new VariantInfoDto(details.get(0).getSku(), details.get(0).getColor(),
+				details.get(0).getSize(), colors, sizes);
 
 		double totalRatings = product.getCountUsersRatedProductFiveStars()
 				+ product.getCountUsersRatedProductFourStars() + product.getAverageRatingForThreeStars()
@@ -267,7 +268,6 @@ public class ProductServiceImplementation implements ProductService {
 		RatingDto ratingDto = new RatingDto(avgRating, totalRatings);
 
 		List<Review> reviews = reviewRepository.getAllProductsReview(newProductId);
-		System.out.println("reviews :" + reviews);
 
 		List<ReviewsDto> reviewsDto = new ArrayList<>();
 		reviews.stream().forEach(review -> {
@@ -280,11 +280,14 @@ public class ProductServiceImplementation implements ProductService {
 				product.getMaterialCare(), product.getSeller());
 
 		List<LandingPageDto> similarItemDto = new ArrayList<>();
+
 		Category productCategory = product.getCategory();
 		List<Product> products = productRepository.findByCategory(productCategory.getName());
-		products.stream()
-				.forEach(item -> similarItemDto.add(new LandingPageDto(item.getId(), details.get(0).getImageData(),
-						item.getBrand(), item.getTitle(), item.getPrice(), item.getDiscountedPrice())));
+		products.stream().forEach(item -> {
+			List<ProductDetails> details1 = new ArrayList<>(item.getDetails());
+			similarItemDto.add(new LandingPageDto(item.getId(), details1.get(0).getImageData(), item.getBrand(),
+					item.getTitle(), item.getPrice(), item.getDiscountedPrice()));
+		});
 
 		PdpDto PdpDto = new PdpDto(displayimages, product.getBrand(), product.getTitle(), VariantInfoDto,
 				product.getPrice(), product.getDiscountedPrice(), ratingDto, detailDto, reviewsDto, similarItemDto);
