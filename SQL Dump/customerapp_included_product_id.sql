@@ -36,7 +36,7 @@ CREATE TABLE `included_product_id` (
 
 LOCK TABLES `included_product_id` WRITE;
 /*!40000 ALTER TABLE `included_product_id` DISABLE KEYS */;
-INSERT INTO `included_product_id` VALUES (1,152),(1,208);
+INSERT INTO `included_product_id` VALUES (1,152),(1,208),(1,453),(3,452),(4,453),(5,454);
 /*!40000 ALTER TABLE `included_product_id` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -49,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-01-08 12:43:57
+-- Dump completed on 2025-01-15 15:20:31

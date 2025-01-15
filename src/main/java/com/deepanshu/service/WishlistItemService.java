@@ -10,7 +10,7 @@ public interface WishlistItemService {
 
     public WishlistItem updateWishlistItem(Long userId, Long id, WishlistItem wishlistItem) throws WishlistItemException, UserException;
 
-    public WishlistItem isWishlistItemExist(Wishlist wishlist, Product product, String size, Long userId);
+    public WishlistItem isWishlistItemExist(Wishlist wishlist, String sku, Long userId);
 
     public void removeWishlistItem(Long userId, Long wishlistItemId) throws WishlistItemException, UserException;
 

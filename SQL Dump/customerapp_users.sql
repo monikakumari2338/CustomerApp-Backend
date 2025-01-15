@@ -41,7 +41,7 @@ CREATE TABLE `users` (
   `referral_code` varchar(255) DEFAULT NULL,
   `role` smallint DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -50,7 +50,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'','2024-11-07','2024-11-05 10:26:20.317337','2024-11-07',_binary '\0','dipanshukumar20aug@gmail.com','Deepanshu Mittal','male','',_binary '','2024-11-05','9625239698','854116','$2a$10$vsvl2CHb3UgihMZoF/IXZuLUVVsaYNvTWMtcWdhe1MPiSdYP5eoiW','1c40b06e',NULL),(2,NULL,NULL,'2024-12-04 11:22:31.122448',NULL,_binary '\0','m@gmail.com','Monika','Female','Kumari',_binary '\0',NULL,'9625239698','432642','$2a$10$ub0h9kNJloeaNbgZaYu76eyMUW0gwhRs3elaDNjsWkQEtoqwphScm','5f66576a',NULL),(3,NULL,NULL,'2024-12-04 11:55:17.262948',NULL,_binary '\0','m1@gmail.com','Monika','Female','Kumari',_binary '\0',NULL,'9625239698','179335','$2a$10$OFfFVta2ZHMjey6le0xFquoVa8DEM8wY21wSFckdGZgxVz85CRIgO','8f80cc1f',NULL);
+INSERT INTO `users` VALUES (1,'','2024-11-07','2024-11-05 10:26:20.317337','2024-11-07',_binary '\0','dipanshukumar20aug@gmail.com','Deepanshu Mittal','male','',_binary '','2024-11-05','9625239698','854116','$2a$10$vsvl2CHb3UgihMZoF/IXZuLUVVsaYNvTWMtcWdhe1MPiSdYP5eoiW','1c40b06e',NULL),(2,NULL,NULL,'2024-12-04 11:22:31.122448',NULL,_binary '\0','m@gmail.com','Monika','Female','Kumari',_binary '\0',NULL,'9625239698','432642','$2a$10$ub0h9kNJloeaNbgZaYu76eyMUW0gwhRs3elaDNjsWkQEtoqwphScm','5f66576a',NULL),(3,NULL,NULL,'2024-12-04 11:55:17.262948',NULL,_binary '\0','m1@gmail.com','Monika','Female','Kumari',_binary '\0',NULL,'9625239698','179335','$2a$10$OFfFVta2ZHMjey6le0xFquoVa8DEM8wY21wSFckdGZgxVz85CRIgO','8f80cc1f',NULL),(4,NULL,NULL,'2025-01-08 14:49:48.886647',NULL,_binary '\0','a@gmail.com','Amit','Male','Singh',_binary '','2025-01-08','9625239698','570181','$2a$10$YjSUgpyWBFEuSkRy2/Dk2.S8pLc0vcDOEGil/cjaS601OrXDQqnea','8fe0e087',NULL),(5,NULL,NULL,'2025-01-15 11:23:58.998878',NULL,_binary '\0','a1@gmail.com','Amit','Male','Singh',_binary '','2025-01-15','9625239698','571078','$2a$10$4yU3tStG3Oi5ijnQTeIpZ.HYTDmh4zNFI/5AUz2dMGk4ZgNYPkGgm','9c61a9fe',NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -63,4 +63,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-01-08 12:43:55
+-- Dump completed on 2025-01-15 15:20:31

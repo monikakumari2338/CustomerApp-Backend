@@ -37,7 +37,7 @@ CREATE TABLE `promotion_categories` (
 
 LOCK TABLES `promotion_categories` WRITE;
 /*!40000 ALTER TABLE `promotion_categories` DISABLE KEYS */;
-INSERT INTO `promotion_categories` VALUES (1,'Dress','all about you'),(1,'Dress','all about you');
+INSERT INTO `promotion_categories` VALUES (1,'Dress','all about you'),(1,'Dress','all about you'),(1,'Dress','Istyle'),(3,'Dress','Purvaja'),(4,'Dress','Istyle'),(5,'Dress','Globus');
 /*!40000 ALTER TABLE `promotion_categories` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -50,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-01-08 12:43:57
+-- Dump completed on 2025-01-15 15:20:26

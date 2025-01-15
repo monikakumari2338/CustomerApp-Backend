@@ -1,5 +1,7 @@
 package com.deepanshu.service;
 
+import com.deepanshu.Dto.CartDto;
+import com.deepanshu.exception.CartItemException;
 import com.deepanshu.exception.ProductException;
 import com.deepanshu.exception.UserException;
 import com.deepanshu.modal.Cart;
@@ -15,9 +17,9 @@ public interface CartService {
 
     public Cart createCart(User user);
 
-    public String addCartItem(Long userId, AddItemRequest req) throws ProductException, UserException;
+    public String addCartItem(Long userId, AddItemRequest req) throws ProductException, UserException, CartItemException;
 
-    public Cart findUserCart(Long userId);
+    public CartDto findUserCart(Long userId);
 
     void clearCart(Long id);
 

@@ -1,5 +1,6 @@
 package com.deepanshu.controller;
 
+import com.deepanshu.Dto.CartDto;
 import com.deepanshu.exception.CartItemException;
 import com.deepanshu.modal.Order;
 import com.deepanshu.request.ExpressDeliveryRequest;
@@ -16,128 +17,136 @@ import com.deepanshu.response.ApiResponse;
 import com.deepanshu.service.CartService;
 import com.deepanshu.service.UserService;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+
 import java.math.BigDecimal;
 import java.util.Map;
 
 @RestController
 @RequestMapping("/api/cart")
 @CrossOrigin(origins = "https://localhost:8081")
+@SecurityRequirement(name = "bearerAuth")
 public class CartController {
 
-    private CartService cartService;
-    private UserService userService;
+	private CartService cartService;
+	private UserService userService;
 
-    public CartController(CartService cartService, UserService userService) {
-        this.cartService = cartService;
-        this.userService = userService;
-    }
+	public CartController(CartService cartService, UserService userService) {
+		this.cartService = cartService;
+		this.userService = userService;
+	}
 
-    @GetMapping("/")
-    public ResponseEntity<Cart> findUserCartHandler(@RequestHeader("Authorization") String jwt) throws UserException {
+	@GetMapping("/")
+	public ResponseEntity<CartDto> findUserCartHandler(@RequestHeader("Authorization") String jwt)
+			throws UserException {
 
-        User user = userService.findUserProfileByJwt(jwt);
+		User user = userService.findUserProfileByJwt(jwt);
 
-        Cart cart = cartService.findUserCart(user.getId());
+		CartDto cartDto = cartService.findUserCart(user.getId());
 
-        System.out.println("cart - " + cart.getUser().getEmail());
+		System.out.println("cart - " + cartDto);
 
-        return new ResponseEntity<Cart>(cart, HttpStatus.OK);
-    }
+		return new ResponseEntity<CartDto>(cartDto, HttpStatus.OK);
+	}
 
-    @PutMapping("/add")
-    public ResponseEntity<ApiResponse> addItemToCart(@RequestBody AddItemRequest req, @RequestHeader("Authorization") String jwt) throws UserException, ProductException {
+	@PutMapping("/add")
+	public ResponseEntity<ApiResponse> addItemToCart(@RequestBody AddItemRequest req,
+			@RequestHeader("Authorization") String jwt) throws UserException, ProductException, CartItemException {
 
-        User user = userService.findUserProfileByJwt(jwt);
+		User user = userService.findUserProfileByJwt(jwt);
 
-        cartService.addCartItem(user.getId(), req);
+		cartService.addCartItem(user.getId(), req);
 
-        ApiResponse res = new ApiResponse("Item Added To Cart Successfully", true);
+		ApiResponse res = new ApiResponse("Item Added To Cart Successfully", true);
 
-        return new ResponseEntity<ApiResponse>(res, HttpStatus.ACCEPTED);
+		return new ResponseEntity<ApiResponse>(res, HttpStatus.ACCEPTED);
 
-    }
+	}
 
-    @DeleteMapping("/clear")
-    public ResponseEntity<ApiResponse> clearCart(@RequestHeader("Authorization") String jwt) throws UserException {
-        User user = userService.findUserProfileByJwt(jwt);
+	@DeleteMapping("/clear")
+	public ResponseEntity<ApiResponse> clearCart(@RequestHeader("Authorization") String jwt) throws UserException {
+		User user = userService.findUserProfileByJwt(jwt);
 
-        cartService.clearCart(user.getId());
+		cartService.clearCart(user.getId());
 
-        ApiResponse response = new ApiResponse("Cart cleared successfully", true);
-        return new ResponseEntity<>(response, HttpStatus.OK);
-    }
+		ApiResponse response = new ApiResponse("Cart cleared successfully", true);
+		return new ResponseEntity<>(response, HttpStatus.OK);
+	}
 
-    @PostMapping("/{userId}/express-delivery")
-    public ResponseEntity<String> setExpressDelivery(@PathVariable Long userId, @RequestBody ExpressDeliveryRequest request) {
-        cartService.setExpressDelivery(userId, request.isExpressDelivery());
-        return ResponseEntity.ok("Express delivery option updated.");
-    }
+	@PostMapping("/{userId}/express-delivery")
+	public ResponseEntity<String> setExpressDelivery(@PathVariable Long userId,
+			@RequestBody ExpressDeliveryRequest request) {
+		cartService.setExpressDelivery(userId, request.isExpressDelivery());
+		return ResponseEntity.ok("Express delivery option updated.");
+	}
 
-    @PostMapping("/calculate-discount")
-    public ResponseEntity<String> calculateDiscountForUser(@RequestParam Long userId, @RequestParam String promoCode) {
-        BigDecimal totalDiscount = cartService.calculateDiscount(userId, promoCode);
-        return ResponseEntity.ok("Total Discount Calculated: " + totalDiscount);
-    }
+	@PostMapping("/calculate-discount")
+	public ResponseEntity<String> calculateDiscountForUser(@RequestParam Long userId, @RequestParam String promoCode) {
+		BigDecimal totalDiscount = cartService.calculateDiscount(userId, promoCode);
+		return ResponseEntity.ok("Total Discount Calculated: " + totalDiscount);
+	}
 
-    @PostMapping("/removeDiscount")
-    public ResponseEntity<String> removeDiscount(@RequestParam Long userId) {
-        cartService.removeDiscount(userId);
-        return ResponseEntity.ok("Discount removed successfully.");
-    }
+	@PostMapping("/removeDiscount")
+	public ResponseEntity<String> removeDiscount(@RequestParam Long userId) {
+		cartService.removeDiscount(userId);
+		return ResponseEntity.ok("Discount removed successfully.");
+	}
 
-    @GetMapping("/getDiscountAmount")
-    public ResponseEntity<BigDecimal> getDiscountAmount(@RequestParam Long userId) {
-        BigDecimal discountAmount = cartService.getDiscountAmount(userId);
-        return ResponseEntity.ok(discountAmount);
-    }
+	@GetMapping("/getDiscountAmount")
+	public ResponseEntity<BigDecimal> getDiscountAmount(@RequestParam Long userId) {
+		BigDecimal discountAmount = cartService.getDiscountAmount(userId);
+		return ResponseEntity.ok(discountAmount);
+	}
 
-    @DeleteMapping("/{userId}/express-delivery")
-    public void removeExpressDelivery(@PathVariable Long userId) {
-        cartService.removeExpressDelivery(userId);
-    }
+	@DeleteMapping("/{userId}/express-delivery")
+	public void removeExpressDelivery(@PathVariable Long userId) {
+		cartService.removeExpressDelivery(userId);
+	}
 
-    @PostMapping("/apply-birthday-discount")
-    public ResponseEntity<String> applyBirthdayDiscount(@RequestParam Long userId) throws UserException {
-        BigDecimal totalDiscount = cartService.applyBirthdayDiscount(userId);
-        return ResponseEntity.ok("Total discount calculated" + totalDiscount);
-    }
+	@PostMapping("/apply-birthday-discount")
+	public ResponseEntity<String> applyBirthdayDiscount(@RequestParam Long userId) throws UserException {
+		BigDecimal totalDiscount = cartService.applyBirthdayDiscount(userId);
+		return ResponseEntity.ok("Total discount calculated" + totalDiscount);
+	}
 
-    @PostMapping("/apply-anniversary-discount")
-    public ResponseEntity<String> applyAnniversaryDiscount(@RequestParam Long userId) throws UserException {
-        BigDecimal totalDiscount = cartService.applyAnniversaryDiscount(userId);
-        return ResponseEntity.ok("Total discount calculated" + totalDiscount);
-    }
+	@PostMapping("/apply-anniversary-discount")
+	public ResponseEntity<String> applyAnniversaryDiscount(@RequestParam Long userId) throws UserException {
+		BigDecimal totalDiscount = cartService.applyAnniversaryDiscount(userId);
+		return ResponseEntity.ok("Total discount calculated" + totalDiscount);
+	}
 
-    @PostMapping("/apply-bogo/{userId}")
-    public ResponseEntity<String> applyBogoPromotion(@PathVariable Long userId) {
-        try {
-            cartService.applyBogoPromotion(userId);
-            return ResponseEntity.ok("BOGO promotion applied successfully.");
-        } catch (ProductException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Failed to apply BOGO promotion: " + e.getMessage());
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Cart not found for user ID: " + userId);
-        }
-    }
-    @PostMapping("/apply-best-item-wise-promotion")
-    public ResponseEntity<?> applyBestItemWisePromotion(
-            @RequestParam Long userId) {
-        try {
-            cartService.applyBestItemWisePromotion(userId);
-            return ResponseEntity.ok("Best item-wise promotion applied successfully.");
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error applying best item-wise promotion: " + e.getMessage());
-        }
-    }
+	@PostMapping("/apply-bogo/{userId}")
+	public ResponseEntity<String> applyBogoPromotion(@PathVariable Long userId) {
+		try {
+			cartService.applyBogoPromotion(userId);
+			return ResponseEntity.ok("BOGO promotion applied successfully.");
+		} catch (ProductException e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+					.body("Failed to apply BOGO promotion: " + e.getMessage());
+		} catch (IllegalArgumentException e) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Cart not found for user ID: " + userId);
+		}
+	}
 
-    @PostMapping("/apply-best-transaction-wise-promotion")
-    public ResponseEntity<?> applyBestTransactionWisePromotion(
-            @RequestParam Long userId) {
-        try {
-            cartService.applyBestTransactionWisePromotion(userId);
-            return ResponseEntity.ok("Best transaction-wise promotion applied successfully.");
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error applying best transaction-wise promotion: " + e.getMessage());
-        }
-    }
+	@PostMapping("/apply-best-item-wise-promotion")
+	public ResponseEntity<?> applyBestItemWisePromotion(@RequestParam Long userId) {
+		try {
+			cartService.applyBestItemWisePromotion(userId);
+			return ResponseEntity.ok("Best item-wise promotion applied successfully.");
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+					.body("Error applying best item-wise promotion: " + e.getMessage());
+		}
+	}
+
+	@PostMapping("/apply-best-transaction-wise-promotion")
+	public ResponseEntity<?> applyBestTransactionWisePromotion(@RequestParam Long userId) {
+		try {
+			cartService.applyBestTransactionWisePromotion(userId);
+			return ResponseEntity.ok("Best transaction-wise promotion applied successfully.");
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+					.body("Error applying best transaction-wise promotion: " + e.getMessage());
+		}
+	}
 }

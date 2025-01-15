@@ -2,6 +2,7 @@ package com.deepanshu.repository;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import com.deepanshu.modal.Category;
@@ -42,5 +43,11 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 	@Query(value = "SELECT * FROM product ORDER BY count_users_rated_product_four_stars DESC LIMIT 2", nativeQuery = true)
 	List<Product> findTop2ByCountUsersRatedProductFourStars();
 
-	// List<Product> findBy
+//	@Query("SELECT p FROM Product p JOIN FETCH p.details d WHERE d.sku = :sku")
+//	Product findProductBySku(@Param("sku") String sku);
+
+	@Query("SELECT p FROM Product p JOIN p.details d WHERE d.sku = :sku")
+	Product findProductBySku(@Param("sku") String sku);
+
+	// Optional<Product> findById(Long id);
 }

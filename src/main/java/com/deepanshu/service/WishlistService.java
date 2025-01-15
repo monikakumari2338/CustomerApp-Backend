@@ -10,7 +10,7 @@ public interface WishlistService {
 
     public Wishlist createWishlist(User user);
 
-    public String addWishlistItem(Long userId, AddItemRequest req) throws ProductException;
+    public String addWishlistItem(User user, AddItemRequest req) throws ProductException;
 
     public Wishlist findUserWishlist(Long userId);
 

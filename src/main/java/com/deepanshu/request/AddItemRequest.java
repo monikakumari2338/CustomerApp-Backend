@@ -10,27 +10,15 @@ import lombok.Setter;
 @Getter
 @Setter
 public class AddItemRequest {
-	private Long productId;
-	private String size;
+	private String sku;
 	private int quantity;
-	private Integer price;
-	private String category;
-	private String color;
 
-	public Long getProductId() {
-		return productId;
+	public String getSku() {
+		return sku;
 	}
 
-	public void setProductId(Long productId) {
-		this.productId = productId;
-	}
-
-	public String getSize() {
-		return size;
-	}
-
-	public void setSize(String size) {
-		this.size = size;
+	public void setSku(String sku) {
+		this.sku = sku;
 	}
 
 	public int getQuantity() {
@@ -41,38 +29,10 @@ public class AddItemRequest {
 		this.quantity = quantity;
 	}
 
-	public Integer getPrice() {
-		return price;
-	}
-
-	public void setPrice(Integer price) {
-		this.price = price;
-	}
-
-	public String getCategory() {
-		return category;
-	}
-
-	public void setCategory(String category) {
-		this.category = category;
-	}
-
-	public String getColor() {
-		return color;
-	}
-
-	public void setColor(String color) {
-		this.color = color;
-	}
-
-	public AddItemRequest(Long productId, String size, int quantity, Integer price, String category, String color) {
+	public AddItemRequest(String sku, int quantity) {
 		super();
-		this.productId = productId;
-		this.size = size;
+		this.sku = sku;
 		this.quantity = quantity;
-		this.price = price;
-		this.category = category;
-		this.color = color;
 	}
 
 	public AddItemRequest() {

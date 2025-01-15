@@ -24,7 +24,7 @@ public class WishlistItem {
 	@ManyToOne
 	private Product product;
 
-	private String size;
+	private String sku;
 
 	private int quantity;
 
@@ -38,13 +38,13 @@ public class WishlistItem {
 
 	}
 
-	public WishlistItem(Long id, Wishlist wishlist, Product product, String size, int quantity, Integer price,
+	public WishlistItem(Long id, Wishlist wishlist, Product product, String sku, int quantity, Integer price,
 			Long userId) {
 		super();
 		this.id = id;
 		this.wishlist = wishlist;
 		this.product = product;
-		this.size = size;
+		this.sku = sku;
 		this.quantity = quantity;
 		this.price = price;
 		this.userId = userId;
@@ -98,12 +98,12 @@ public class WishlistItem {
 		this.product = product;
 	}
 
-	public String getSize() {
-		return size;
+	public String getSku() {
+		return sku;
 	}
 
-	public void setSize(String size) {
-		this.size = size;
+	public void setSku(String sku) {
+		this.sku = sku;
 	}
 
 	public int getQuantity() {
@@ -116,7 +116,7 @@ public class WishlistItem {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, price, product, size);
+		return Objects.hash(id, price, product, sku);
 	}
 
 	@Override
@@ -129,7 +129,7 @@ public class WishlistItem {
 			return false;
 		WishlistItem other = (WishlistItem) obj;
 		return Objects.equals(id, other.id) && Double.doubleToLongBits(price) == Double.doubleToLongBits(other.price)
-				&& Objects.equals(product, other.product) && Objects.equals(size, other.size);
+				&& Objects.equals(product, other.product) && Objects.equals(sku, other.sku);
 	}
 
 }

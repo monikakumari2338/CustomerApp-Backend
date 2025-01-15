@@ -2,7 +2,6 @@ package com.deepanshu.modal;
 
 import java.math.BigDecimal;
 import java.util.*;
-
 import jakarta.persistence.*;
 
 @Entity
@@ -188,8 +187,6 @@ public class Cart {
         this.expressDelivery = expressDelivery;
     }
 
-
-
     public BigDecimal getPromotion_discount() {
         return promotion_discount;
     }
@@ -197,4 +194,5 @@ public class Cart {
     public void setPromotion_discount(BigDecimal promotion_discount) {
         this.promotion_discount = promotion_discount;
     }
+    
 }

@@ -1,5 +1,6 @@
 package com.deepanshu.service;
 
+import com.deepanshu.Dto.CartDto;
 import com.deepanshu.modal.*;
 import com.deepanshu.repository.CartRepository;
 import org.springframework.stereotype.Service;
@@ -68,10 +69,10 @@ public class CouponServiceImplementation implements CouponService {
         List<Coupon> coupons = couponRepository.findByUserId(userId);
         for (Coupon coupon : coupons) {
             int discountPercentage = coupon.getDiscountPercentage();
-            Cart cart = cartService.findUserCart(userId);
-            if (cart != null) {
-                removeDiscounts(cart, discountPercentage);
-            }
+            CartDto cart = cartService.findUserCart(userId);
+//            if (cart != null) {
+//                //removeDiscounts(cart, discountPercentage);
+//            }
             couponRepository.delete(coupon);
         }
     }
@@ -80,11 +81,11 @@ public class CouponServiceImplementation implements CouponService {
     private void removeDiscounts(Cart cart, int discountPercentage) {
         for (CartItem cartItem : cart.getCartItems()) {
             int originalPrice = cartItem.getProduct().getDiscountedPrice(); // Assuming you have the original price stored in the Product object
-            int discountedPrice = cartItem.getDiscountedPrice();
-            int newDiscountedPrice = (int) (discountedPrice / (1 - (discountPercentage / 100.0)));
-            int discountAmount = discountedPrice - newDiscountedPrice;
-            cartItem.setDiscountedPrice(originalPrice); // Resetting to original price
-            cart.setTotalDiscountedPrice(cart.getTotalDiscountedPrice() + discountAmount); // Adjusting total price
+            //int discountedPrice = cartItem.getDiscountedPrice();
+//            int newDiscountedPrice = (int) (discountedPrice / (1 - (discountPercentage / 100.0)));
+//            int discountAmount = discountedPrice - newDiscountedPrice;
+            //cartItem.setDiscountedPrice(originalPrice); // Resetting to original price
+            //cart.setTotalDiscountedPrice(cart.getTotalDiscountedPrice() + discountAmount); // Adjusting total price
         }
         cartRepository.save(cart);
     }

@@ -37,6 +37,7 @@ CREATE TABLE `product_applied_promotion` (
 
 LOCK TABLES `product_applied_promotion` WRITE;
 /*!40000 ALTER TABLE `product_applied_promotion` DISABLE KEYS */;
+INSERT INTO `product_applied_promotion` VALUES (454,250,'FIVEHUNDREDOFF'),(456,250,'FIVEHUNDREDOFF');
 /*!40000 ALTER TABLE `product_applied_promotion` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -49,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-01-08 12:43:50
+-- Dump completed on 2025-01-15 15:20:29

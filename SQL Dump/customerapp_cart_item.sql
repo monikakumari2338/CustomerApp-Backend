@@ -29,7 +29,7 @@ CREATE TABLE `cart_item` (
   `discounted_price` int DEFAULT NULL,
   `price` int DEFAULT NULL,
   `quantity` int NOT NULL,
-  `size` varchar(255) DEFAULT NULL,
+  `sku` varchar(255) DEFAULT NULL,
   `user_id` bigint DEFAULT NULL,
   `cart_id` bigint DEFAULT NULL,
   `product_id` bigint DEFAULT NULL,
@@ -41,7 +41,7 @@ CREATE TABLE `cart_item` (
   CONSTRAINT `FK1uobyhgl1wvgt1jpccia8xxs3` FOREIGN KEY (`cart_id`) REFERENCES `cart` (`id`),
   CONSTRAINT `FKjcyd5wv4igqnw413rgxbfu4nv` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`),
   CONSTRAINT `FKop5bx5ll1ht6jhi5oj5pwjnew` FOREIGN KEY (`promotion_id`) REFERENCES `promotions` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -50,6 +50,7 @@ CREATE TABLE `cart_item` (
 
 LOCK TABLES `cart_item` WRITE;
 /*!40000 ALTER TABLE `cart_item` DISABLE KEYS */;
+INSERT INTO `cart_item` VALUES (16,'Ethnic Dresses','Mauve',1650,1900,1,'sku008',5,2,456,NULL),(17,'Dress','Mauve',1250,1500,1,'sku006',5,2,454,NULL);
 /*!40000 ALTER TABLE `cart_item` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -62,4 +63,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-01-08 12:44:01
+-- Dump completed on 2025-01-15 15:20:27

@@ -153,69 +153,6 @@ public class Product {
 	public Product() {
 	}
 
-	public Product(String title, String description, int price, int discountedPrice, int discountPercent, int quantity,
-			String brand, String color, Set<ProductDetails> details, Set<String> imageUrl, String country,
-			String wearType, String fabric, String sleeves, String fit, String materialCare, String productCode,
-			String seller, String sellerInfo, List<Review> reviews, int numRatings, Category category,
-			String ingredient, String packaging, String milktype, String genericname, String countryoforigin,
-			String preservatives, String consumewithin, LocalDateTime createdAt, boolean eligibleForBogo,
-			List<String> pincode, List<Rating> ratingList, int countUsersRatedProductOneStar,
-			int countUsersRatedProductTwoStars, int countUsersRatedProductThreeStars,
-			int countUsersRatedProductFourStars, int countUsersRatedProductFiveStars, double averageRatingForOneStar,
-			double averageRatingForTwoStars, double averageRatingForThreeStars, double averageRatingForFourStars,
-			double averageRatingForFiveStars, double productRating, boolean eligibleForPromotion,
-			String promotionalDiscountedPrice, List<Promotion> eligiblePromotions,
-			Map<String, Double> appliedPromotion) {
-		this.title = title;
-		this.description = description;
-		this.price = price;
-		this.discountedPrice = discountedPrice;
-		this.discountPercent = discountPercent;
-		this.quantity = quantity;
-		this.brand = brand;
-		this.color = color;
-		this.details = details;
-		this.imageUrl = imageUrl;
-		this.country = country;
-		this.wearType = wearType;
-		this.fabric = fabric;
-		this.sleeves = sleeves;
-		this.fit = fit;
-		this.materialCare = materialCare;
-		this.productCode = productCode;
-		this.seller = seller;
-		this.sellerInfo = sellerInfo;
-		this.reviews = reviews;
-		this.numRatings = numRatings;
-		this.category = category;
-		this.ingredient = ingredient;
-		this.packaging = packaging;
-		this.milktype = milktype;
-		this.genericname = genericname;
-		this.countryoforigin = countryoforigin;
-		this.preservatives = preservatives;
-		this.consumewithin = consumewithin;
-		this.createdAt = createdAt;
-		this.eligibleForBogo = eligibleForBogo;
-		this.pincode = pincode;
-		this.ratingList = ratingList;
-		this.countUsersRatedProductOneStar = countUsersRatedProductOneStar;
-		this.countUsersRatedProductTwoStars = countUsersRatedProductTwoStars;
-		this.countUsersRatedProductThreeStars = countUsersRatedProductThreeStars;
-		this.countUsersRatedProductFourStars = countUsersRatedProductFourStars;
-		this.countUsersRatedProductFiveStars = countUsersRatedProductFiveStars;
-		this.averageRatingForOneStar = averageRatingForOneStar;
-		this.averageRatingForTwoStars = averageRatingForTwoStars;
-		this.averageRatingForThreeStars = averageRatingForThreeStars;
-		this.averageRatingForFourStars = averageRatingForFourStars;
-		this.averageRatingForFiveStars = averageRatingForFiveStars;
-		this.productRating = productRating;
-		this.eligibleForPromotion = eligibleForPromotion;
-		this.promotionalDiscountedPrice = promotionalDiscountedPrice;
-		this.eligiblePromotions = eligiblePromotions;
-		this.appliedPromotion = appliedPromotion;
-	}
-
 	public Map<String, Double> getAppliedPromotion() {
 		return appliedPromotion;
 	}
@@ -606,6 +543,70 @@ public class Product {
 
 	public void setEligibleForBogo(boolean eligibleForBogo) {
 		this.eligibleForBogo = eligibleForBogo;
+	}
+
+	public Product(String title, String description, int price, int discountedPrice, int discountPercent, int quantity,
+			String brand, String color, Set<ProductDetails> details, Set<String> imageUrl, String country,
+			String wearType, String fabric, String sleeves, String fit, String materialCare, String productCode,
+			String seller, String sellerInfo, List<Review> reviews, int numRatings, Category category,
+			String ingredient, String packaging, String milktype, String genericname, String countryoforigin,
+			String preservatives, String consumewithin, LocalDateTime createdAt, boolean eligibleForBogo,
+			List<String> pincode, List<Rating> ratingList, int countUsersRatedProductOneStar,
+			int countUsersRatedProductTwoStars, int countUsersRatedProductThreeStars,
+			int countUsersRatedProductFourStars, int countUsersRatedProductFiveStars, double averageRatingForOneStar,
+			double averageRatingForTwoStars, double averageRatingForThreeStars, double averageRatingForFourStars,
+			double averageRatingForFiveStars, double productRating, boolean eligibleForPromotion,
+			String promotionalDiscountedPrice, List<Promotion> eligiblePromotions,
+			Map<String, Double> appliedPromotion) {
+		super();
+		this.title = title;
+		this.description = description;
+		this.price = price;
+		this.discountedPrice = discountedPrice;
+		this.discountPercent = discountPercent;
+		this.quantity = quantity;
+		this.brand = brand;
+		this.color = color;
+		this.details = details;
+		this.imageUrl = imageUrl;
+		this.country = country;
+		this.wearType = wearType;
+		this.fabric = fabric;
+		this.sleeves = sleeves;
+		this.fit = fit;
+		this.materialCare = materialCare;
+		this.productCode = productCode;
+		this.seller = seller;
+		this.sellerInfo = sellerInfo;
+		this.reviews = reviews;
+		this.numRatings = numRatings;
+		this.category = category;
+		this.ingredient = ingredient;
+		this.packaging = packaging;
+		this.milktype = milktype;
+		this.genericname = genericname;
+		this.countryoforigin = countryoforigin;
+		this.preservatives = preservatives;
+		this.consumewithin = consumewithin;
+		this.createdAt = createdAt;
+		this.eligibleForBogo = eligibleForBogo;
+		this.pincode = pincode;
+		this.ratingList = ratingList;
+		this.countUsersRatedProductOneStar = countUsersRatedProductOneStar;
+		this.countUsersRatedProductTwoStars = countUsersRatedProductTwoStars;
+		this.countUsersRatedProductThreeStars = countUsersRatedProductThreeStars;
+		this.countUsersRatedProductFourStars = countUsersRatedProductFourStars;
+		this.countUsersRatedProductFiveStars = countUsersRatedProductFiveStars;
+		this.averageRatingForOneStar = averageRatingForOneStar;
+		this.averageRatingForTwoStars = averageRatingForTwoStars;
+		this.averageRatingForThreeStars = averageRatingForThreeStars;
+		this.averageRatingForFourStars = averageRatingForFourStars;
+		this.averageRatingForFiveStars = averageRatingForFiveStars;
+		this.productRating = productRating;
+		this.eligibleForPromotion = eligibleForPromotion;
+		this.promotionalDiscountedPrice = promotionalDiscountedPrice;
+		this.eligiblePromotions = eligiblePromotions;
+		this.appliedPromotion = appliedPromotion;
 	}
 
 	@Override

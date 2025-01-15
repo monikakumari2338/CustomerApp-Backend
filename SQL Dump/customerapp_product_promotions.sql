@@ -38,6 +38,7 @@ CREATE TABLE `product_promotions` (
 
 LOCK TABLES `product_promotions` WRITE;
 /*!40000 ALTER TABLE `product_promotions` DISABLE KEYS */;
+INSERT INTO `product_promotions` VALUES (452,3),(453,1),(453,4),(454,5);
 /*!40000 ALTER TABLE `product_promotions` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -50,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-01-08 12:43:46
+-- Dump completed on 2025-01-15 15:20:30

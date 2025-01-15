@@ -27,7 +27,7 @@ CREATE TABLE `wishlist_item` (
   `discounted_price` int DEFAULT NULL,
   `price` int DEFAULT NULL,
   `quantity` int NOT NULL,
-  `size` varchar(255) DEFAULT NULL,
+  `sku` varchar(255) DEFAULT NULL,
   `user_id` bigint DEFAULT NULL,
   `product_id` bigint DEFAULT NULL,
   `wishlist_id` bigint DEFAULT NULL,
@@ -36,7 +36,7 @@ CREATE TABLE `wishlist_item` (
   KEY `FK5iw5sajivrxnt4qjxqlgo8yb1` (`wishlist_id`),
   CONSTRAINT `FK5iw5sajivrxnt4qjxqlgo8yb1` FOREIGN KEY (`wishlist_id`) REFERENCES `wishlist` (`id`),
   CONSTRAINT `FK5s5jxai41c8tqklyy111ngqh7` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -45,6 +45,7 @@ CREATE TABLE `wishlist_item` (
 
 LOCK TABLES `wishlist_item` WRITE;
 /*!40000 ALTER TABLE `wishlist_item` DISABLE KEYS */;
+INSERT INTO `wishlist_item` VALUES (6,1500,1500,1,'sku006',5,454,1);
 /*!40000 ALTER TABLE `wishlist_item` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -57,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-01-08 12:43:53
+-- Dump completed on 2025-01-15 15:20:33

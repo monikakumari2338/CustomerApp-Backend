@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
+import com.deepanshu.Dto.CartDto;
 import com.deepanshu.exception.OrderException;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -87,62 +88,62 @@ public class OrderServiceImplementation implements OrderService {
 		userRepository.save(user);
 
 		int redeemedPoints = 0;
-		Cart cart = cartService.findUserCart(user.getId());
-		if (cart != null && !cart.getCartItems().isEmpty()) {
-			redeemedPoints = rewardService.calculateRedeemedPointsagain(user);
-		}
+		CartDto cart = cartService.findUserCart(user.getId());
+//		if (cart != null && !cart.getCartItems().isEmpty()) {
+//			redeemedPoints = rewardService.calculateRedeemedPointsagain(user);
+//		}
 		Wishlist wishlist = wishlistService.findUserWishlist(user.getId());
 		List<OrderItem> orderItems = new ArrayList<>();
 
-		for (CartItem item : cart.getCartItems()) {
-			OrderItem orderItem = new OrderItem();
+		// for (CartItem item : cart.getCartItems()) {
+		OrderItem orderItem = new OrderItem();
 
-			orderItem.setPrice(item.getPrice());
-			orderItem.setProduct(item.getProduct());
-			orderItem.setQuantity(item.getQuantity());
-			orderItem.setSize(item.getSize());
-			orderItem.setUserId(item.getUserId());
-			orderItem.setDiscountedPrice(item.getDiscountedPrice());
+//			orderItem.setPrice(item.getPrice());
+//			orderItem.setProduct(item.getProduct());
+//			orderItem.setQuantity(item.getQuantity());
+//			orderItem.setSize(item.getSize());
+//			orderItem.setUserId(item.getUserId());
+//			orderItem.setDiscountedPrice(item.getDiscountedPrice());
+//
+//			// Decrease inventory
+		//Product product = item.getProduct();
+		// product.decreaseInventory(item.getSize(), item.getQuantity());
+		//productService.save(product); // Save the product to update the inventory in the database
 
-			// Decrease inventory
-			Product product = item.getProduct();
-			product.decreaseInventory(item.getSize(), item.getQuantity());
-			productService.save(product); // Save the product to update the inventory in the database
-
-			OrderItem createdOrderItem = orderItemRepository.save(orderItem);
-			orderItems.add(createdOrderItem);
-		}
+		OrderItem createdOrderItem = orderItemRepository.save(orderItem);
+		orderItems.add(createdOrderItem);
 
 		Order createdOrder = new Order();
-		createdOrder.setUser(user);
-		createdOrder.setOrderItems(orderItems);
-		createdOrder.setTotalPrice(cart.getTotalPrice());
-		createdOrder.setTotalDiscountedPrice(cart.getTotalDiscountedPrice());
-		createdOrder.setDiscounte(cart.getDiscounte());
-		createdOrder.setTotalItem(cart.getTotalItem());
-		createdOrder.setShippingAddress(address);
-		createdOrder.setOrderDate(LocalDateTime.now());
-		createdOrder.setOrderStatus(OrderStatus.PENDING);
-		createdOrder.getPaymentDetails().setStatus(PaymentStatus.PENDING);
-		createdOrder.setCreatedAt(LocalDateTime.now());
-		createdOrder.setSubscription(subscription);
-		createdOrder.setStorePickup(storePickup); // store pickup
-		createdOrder.setPromotionDiscount(cart.getPromotion_discount());
-		createdOrder.setPromoCode(new HashMap<>(cart.getPromoCode()));
-
-		if (redeemedPoints > 0) {
-			createdOrder.setRedeemedPoints(redeemedPoints);
-		} else {
-			createdOrder.setRedeemedPoints(0);
-		}
-		Order savedOrder = orderRepository.save(createdOrder);
+//		createdOrder.setUser(user);
+//		createdOrder.setOrderItems(orderItems);
+//		createdOrder.setTotalPrice(cart.getTotalPrice());
+//		createdOrder.setTotalDiscountedPrice(cart.getTotalDiscountedPrice());
+//		createdOrder.setDiscounte(cart.getDiscounte());
+//		createdOrder.setTotalItem(cart.getTotalItem());
+//		createdOrder.setShippingAddress(address);
+//		createdOrder.setOrderDate(LocalDateTime.now());
+//		createdOrder.setOrderStatus(OrderStatus.PENDING);
+//		createdOrder.getPaymentDetails().setStatus(PaymentStatus.PENDING);
+//		createdOrder.setCreatedAt(LocalDateTime.now());
+//		createdOrder.setSubscription(subscription);
+//		createdOrder.setStorePickup(storePickup); // store pickup
+//		createdOrder.setPromotionDiscount(cart.getPromotion_discount());
+//		createdOrder.setPromoCode(new HashMap<>(cart.getPromoCode()));
+//
+//		if (redeemedPoints > 0) {
+//			createdOrder.setRedeemedPoints(redeemedPoints);
+//		} else {
+//			createdOrder.setRedeemedPoints(0);
+//		}
+		// Order savedOrder = orderRepository.save(createdOrder);
 		for (OrderItem item : orderItems) {
-			item.setOrder(savedOrder);
+			// item.setOrder(savedOrder);
 			orderItemRepository.save(item);
 		}
 		Map<String, Integer> appliedPromotion = createdOrder.getPromotionList();
 
-		return savedOrder;
+		// return savedOrder;
+		return null;
 
 	}
 

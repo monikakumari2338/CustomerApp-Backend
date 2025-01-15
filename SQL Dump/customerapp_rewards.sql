@@ -34,7 +34,7 @@ CREATE TABLE `rewards` (
   PRIMARY KEY (`id`),
   KEY `FK5ko6wh7m9q06ew6o1tq90j0ym` (`user_id`),
   CONSTRAINT `FK5ko6wh7m9q06ew6o1tq90j0ym` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,7 +43,7 @@ CREATE TABLE `rewards` (
 
 LOCK TABLES `rewards` WRITE;
 /*!40000 ALTER TABLE `rewards` DISABLE KEYS */;
-INSERT INTO `rewards` VALUES (1,'2024-11-05 10:26:20.505337',200,200,_binary '\0','Earn_On_SignUp',0,1),(2,'2024-12-04 11:22:31.383643',200,200,_binary '\0','Earn_On_SignUp',0,2),(3,'2024-12-04 11:55:17.385975',200,200,_binary '\0','Earn_On_SignUp',0,3);
+INSERT INTO `rewards` VALUES (1,'2024-11-05 10:26:20.505337',200,200,_binary '\0','Earn_On_SignUp',0,1),(2,'2024-12-04 11:22:31.383643',200,200,_binary '\0','Earn_On_SignUp',0,2),(3,'2024-12-04 11:55:17.385975',200,200,_binary '\0','Earn_On_SignUp',0,3),(5,'2025-01-15 11:23:59.214082',200,200,_binary '\0','Earn_On_SignUp',0,5);
 /*!40000 ALTER TABLE `rewards` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -56,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-01-08 12:43:49
+-- Dump completed on 2025-01-15 15:20:30
